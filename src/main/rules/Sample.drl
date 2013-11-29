@@ -1,70 +1,39 @@
 package com.sample
  
-import com.sample.DroolsTest.Feedback;
-import com.sample.DroolsTest.Fire;
-import com.sample.DroolsTest.Phone;
-import com.sample.DroolsTest.Firefighters;
+import communication.Attribute;
+import communication.Question;
 
-rule "Add Feedback"
+
+rule "asktype"
     when
     then
-      Feedback feedback = new Feedback();
-      feedback.setSmoke(true);
-      feedback.setTemperature(160);
-      insert(feedback);      
-end
- 
-rule "Add Feedback2"
-    when
-    then
-      Feedback feedback = new Feedback();
-      feedback.setSmoke(true);
-      feedback.setTemperature(160);
-      insert(feedback);      
-end
- 
-rule "Insert fire"
-    when
-        exists Feedback(smoke == true, temperature > 150)
-    then
-    	insert(new Fire());
-        //m.setMessage( "Goodbye cruel world" );
-        //m.setStatus( Message.GOODBYE );
-        //update( m );
+      Question.Ask("type");
 end
 
-rule "Setup number"
+rule "askppl"
     when
-        Fire()
     then
-        insert(new Phone("112"));
+      Question.Ask("people");
 end
 
-rule "Call number message"
-    when
-        p: Phone()
-    then
-    	System.out.println("Please call: " + p.getNumber());
+rule "formanyppljustdixit"
+	when
+		a: Attribute(Name("people"), GreaterThan(6));
+	then
+		Question.Ask("offer_dixit");
 end
 
-rule "Fire message"
-    when
-        Fire()
-    then
-        System.out.println("Pali sie");
+rule "new attr"
+	when
+		a: Attribute();
+	then
+		System.out.println("new Attribute! type: " + a.Name() + ", value: " + a.Value());
 end
 
-rule "Firefighters came"
-    when
-        Firefighters() && f: Fire()
-    then
-    	retract(f);
-        System.out.println("We are safe, firefighters are here!");
-end
-
-rule "Firefighters go away"
-    when
-        Firefighters() && not Fire()
-    then
-        System.out.println("Go away noobs.");
+rule "game found"
+	when
+		a: Attribute(Name("game"), Equals(true));
+	then
+		System.out.println("Finished!");
+		drools.halt();
 end

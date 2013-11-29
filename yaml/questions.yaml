@@ -1,0 +1,30 @@
+people:
+  type: "single"
+  fact_name: "people"
+  text: "Ile jest osób?"
+  answers:
+    number_1: "1 (You must be very lonely...)"
+    number_2: "2"
+    number_3: "3"
+    number_4: "4"
+    number_5: "5"
+    number_6: "6"
+    number_7: "6 lub więcej"
+
+type:
+  type: "multiple"
+  fact_name: "type"
+  text: "Jaki rodzaj gry cie interesuje dluga nazwa placku?"
+  answers:
+    strategy: "Strategiczna"
+    logic: "Logiczna"
+    speed: "Zrecznosciowa"
+    forget: "Obojętnie"
+
+offer_dixit:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy dixit. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"

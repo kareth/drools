@@ -32,6 +32,33 @@ type:
     parody: "Mało poważna"
     irrelevant: "Bez znaczenia"
 
+tradition:
+  text: "Czy przy poszukiwaniu brać pod uwagę gry tradycyjne?"
+  type: "single"
+  fact_name: "tradition"
+  answers: 
+    "yes": "Tak"
+    "no": "Nie"
+
+type_more_than_hour:
+  text: "Jaki rodzaj gry Cię interesuje?"
+  type: "multiple"
+  fact_name: "type"
+  answers:
+    strategic: "Strategiczna"
+    parody: "Mało poważna"
+    irrelevant: "Bez znaczenia"
+
+type_less_than_hour:
+  text: "Jaki rodzaj gry Cię interesuje?"
+  type: "multiple"
+  fact_name: "type"
+  answers:
+    random: "Losowa"
+    action: "Zręcznościowa"
+    logic: "Logiczna"
+    irrelevant: "Bez znaczenia"
+
 type_action:
   text: "Czy jesteś zainteresowany grą zręcznościową?"
   type: "single"
@@ -56,6 +83,13 @@ preparation:
     number_10: "Do 10 minut"
     number_11: "Więcej niż 10 minut"
 
+outside:
+  text: "Czy jesteś zainteresowany grą w plenerze?"
+  type: "single"
+  fact_name: "outside"
+  answers:
+    "yes": "Tak"
+    "no": "Nie"
 
 action_kind:
   text: "Jakiego rodzaju zręczności ma wymagać gra?"
@@ -79,6 +113,22 @@ unreal:
   text: "Czy interesuje Cię gra BARDZO mocno oderwana od rzeczywistości?"
   type: "single"
   fact_name: "unreal"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie!"
+
+hour:
+  text: "Czy gra może trwać dłużej niż godzinę?"
+  type: "single"
+  fact_name: "hour"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie!"
+
+hour_force:
+  text: "Czy czas dłuższy niż godzinę jest wymogiem?"
+  type: "single"
+  fact_name: "hour_force"
   answers:
     "yes": "Tak!"
     "no": "Nie!"
@@ -107,6 +157,14 @@ offer_dobble:
     "yes": "Tak!"
     "no": "Nie, szukajmy dalej"
 
+offer_angry_birds:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Angry Birds Action Game. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
 offer_jenga:
   type: "single"
   fact_name: "game"
@@ -127,6 +185,46 @@ offer_superfarmer:
   type: "single"
   fact_name: "game"
   text: "Proponujemy grę Super Farmer. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
+offer_bierki:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Bierki. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
+offer_madzong:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Madżong. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
+only_one:
+  type: "single"
+  fact_name: "only_one"
+  text: "Czy gra ma dopuszczać możliwość gry większej liczby osób?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie!"
+
+offer_robinson:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Robinson Crusoe. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
+offer_domino:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Domino. Może być?"
   answers:
     "yes": "Tak!"
     "no": "Nie, szukajmy dalej"

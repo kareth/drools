@@ -3,16 +3,18 @@ package com.sample
 import communication.Attribute;
 import communication.Question;
 
-/*rule "asktype"
-    when
-    then
-      Question.Ask("type");
-end */
-
 rule "ask people"
     when
     then
       Question.Ask("people");
+end
+
+rule "ask tradition"
+	salience 2
+	when
+		Attribute(Name("people"), GreaterThan(1));
+	then
+		Question.Ask("tradition");
 end
 
 rule "ask age"
@@ -43,17 +45,53 @@ rule "superfarmer"
 		Question.Ask("offer_superfarmer");
 end
 
+rule "domino"
+	when
+		Attribute(Name("tradition"), Equals(true));	
+		Attribute(Name("people"), LessThan(5));
+		Attribute(Name("people"), GreaterThan(1));
+		Attribute(Name("type"), Equals("logic"));
+	then
+		Question.Ask("offer_domino");
+end
+
+rule "bierki"
+	when
+		Attribute(Name("tradition"), Equals(true));	
+		Attribute(Name("action_kind"), Equals("precision"));
+		Attribute(Name("people"), GreaterThan(1));
+		Attribute(Name("people"), LessThan(7));
+	then
+		Question.Ask("offer_bierki");
+end
+
 rule "chinczyk"
 	when
-		a: Attribute(Name("people"), LessThan(5));
+		Attribute(Name("tradition"), Equals(true));	
+		Attribute(Name("people"), LessThan(5));
 		(
-			b: Attribute(Name("type"), Equals("random"));
+			Attribute(Name("type"), Equals("random"));
 			or
-			c: Attribute(Name("random"), Equals(true));
+			Attribute(Name("random"), Equals(true));
 		)
 	then
 		Question.Ask("offer_chinczyk");
 end
+
+rule "madzong"
+	when
+		Attribute(Name("tradition"), Equals(true));
+		Attribute(Name("people"), LessThan(5));
+		Attribute(Name("people"), GreaterThan(3));
+		(
+			b: Attribute(Name("random"), Equals(false));
+			or
+			c: Attribute(Name("type"), Equals("logic"));
+		)
+	then
+		Question.Ask("offer_madzong");
+end
+
 
 rule "corridor"
 	when
@@ -80,11 +118,40 @@ rule "blokus"
 		Question.Ask("offer_blokus");
 end
 
+rule "ask hour"
+	when 
+		Attribute(Name("age"), GreaterThan(7));
+	then
+		Question.Ask("hour");
+end
+
+rule "ask hour force"
+	when 
+		Attribute(Name("hour"), Equals(true));
+	then
+		Question.Ask("hour_force");
+end
+
 rule "ask game type"
 	when 
-		a: Attribute(Name("age"), GreaterThan(7));
+		Attribute(Name("hour"), Equals(true));
+		Attribute(Name("hour_force"), Equals(false));
 	then
 		Question.Ask("type");
+end
+
+rule "ask game type more than hour"
+	when
+		Attribute(Name("hour_force"), Equals(true));
+	then
+		Question.Ask("type_more_than_hour");
+end
+
+rule "ask game type less than hour"
+	when
+		Attribute(Name("hour"), Equals(false));
+	then
+		Question.Ask("type_less_than_hour");
 end
 
 rule "ask economic"
@@ -157,10 +224,10 @@ end
 
 rule "carcassone"
 	when
-		a: Attribute(Name("economic"), Equals(false));
-		b: Attribute(Name("preparation"), GreaterThan(10));
-		c: Attribute(Name("people"), LessThan(6));
-		e: Attribute(Name("age"), GreaterThan(7));
+		Attribute(Name("economic"), Equals(false));
+		Attribute(Name("preparation"), GreaterThan(10));
+		Attribute(Name("people"), LessThan(6));
+		Attribute(Name("age"), GreaterThan(7));
 	then
 		Question.Ask("offer_caecassone");
 end
@@ -175,6 +242,7 @@ rule "gra o tron"
 		Question.Ask("offer_gra_o_tron");
 
 end
+
 rule "ask action game"
 	when
 		a: Attribute(Name("people"), GreaterThan(6));
@@ -184,52 +252,86 @@ rule "ask action game"
 		Question.Ask("type_action");
 end
 
-rule "ask action game kind"
+rule "outside"
 	when
 		a: Attribute(Name("action"), Equals(true));
 		or
 		b: Attribute(Name("type"), Equals("action"));
 	then
+		Question.Ask("outside");
+end
+
+rule "ask action game kind"
+	when
+		Attribute(Name("outside"), Equals(false));
+	then
 		Question.Ask("action_kind");
+end
+
+rule "ask only one"
+	when
+		a: Attribute(Name("people"), Equals(1));
+	then
+		Question.Ask("only_one");
+end
+		
+rule "robinson crusoe"
+	when
+		Attribute(Name("only_one"), Equals(true));
+		or
+		(
+			Attribute(Name("age"), GreaterThan(8));
+			and
+			Attribute(Name("people"), LessThan(5));
+			and
+			(
+				Attribute(Name("type"), Equals("random"));
+				or
+				Attribute(Name("random"), Equals(true));
+			)
+		)
+	then
+		Question.Ask("offer_robinson");
 end
 
 rule "genius"
 	when
-		a: Attribute(Name("people"), Equals(1));
+		Attribute(Name("only_one"), Equals(false));
 	then
 		Question.Ask("offer_genius");
 end
 
 rule "dobble"
 	when 
-		a: Attribute(Name("action_kind"), Equals("perception"));
-		or
-		a: Attribute(Name("action_kind"), Equals("irrelevant"));
+		Attribute(Name("action_kind"), Equals("perception"));
 	then
 		Question.Ask("offer_dobble");
 end
 
 rule "jungle speed"
 	when 
-		a: Attribute(Name("action_kind"), Equals("speed"));
-		or
-		a: Attribute(Name("action_kind"), Equals("irrelevant"));
+		Attribute(Name("action_kind"), Equals("speed"));
 	then
 		Question.Ask("offer_junglespeed");
 end
 
 rule "jenga"
 	when
-		a: Attribute(Name("action_kind"), Equals("precision"));
-		or
-		a: Attribute(Name("action_kind"), Equals("irrelevant"));
+		Attribute(Name("action_kind"), Equals("precision"));
 	then
 		Question.Ask("offer_jenga");
 end
 
+rule "angry birds"
+	when
+		Attribute(Name("outside"), Equals(true));
+	then
+		Question.Ask("offer_angry_birds");
+end
+
 rule "ask unreal"
 	when
-		a: Attribute(Name("type"), Equals("parody"));
+		Attribute(Name("type"), Equals("parody"));
 	then
 		Question.Ask("unreal");	
 end

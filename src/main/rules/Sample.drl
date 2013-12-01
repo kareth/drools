@@ -3,22 +3,253 @@ package com.sample
 import communication.Attribute;
 import communication.Question;
 
-
-rule "asktype"
+/*rule "asktype"
     when
     then
       Question.Ask("type");
-end
+end */
 
-rule "askppl"
+rule "ask people"
     when
     then
       Question.Ask("people");
 end
 
-rule "formanyppljustdixit"
+rule "ask age"
+	when
+		a: Attribute(Name("people"), LessThan(7));
+		b: Attribute(Name("people"), GreaterThan(1));
+	then
+		Question.Ask("age");
+end
+
+rule "ask random"
+	when 
+		a: Attribute(Name("age"), LessThan(8));
+		b: Attribute(Name("action"), Equals(false));
+	then
+		Question.Ask("type_random");
+end
+
+rule "superfarmer"
+	when
+		a: Attribute(Name("people"), LessThan(5));
+		(
+			b: Attribute(Name("type"), Equals("random"));
+			or
+			c: Attribute(Name("random"), Equals(true));
+		)
+	then
+		Question.Ask("offer_superfarmer");
+end
+
+rule "chinczyk"
+	when
+		a: Attribute(Name("people"), LessThan(5));
+		(
+			b: Attribute(Name("type"), Equals("random"));
+			or
+			c: Attribute(Name("random"), Equals(true));
+		)
+	then
+		Question.Ask("offer_chinczyk");
+end
+
+rule "corridor"
+	when
+		a: Attribute(Name("people"), LessThan(5));
+		(
+			b: Attribute(Name("random"), Equals(false));
+			or
+			c: Attribute(Name("type"), Equals("logic"));
+
+		)
+	then
+		Question.Ask("offer_corridor");
+end
+
+rule "blokus"
+	when
+		a: Attribute(Name("people"), LessThan(5));
+		(
+			b: Attribute(Name("random"), Equals(false));
+			or 
+			c: Attribute(Name("type"), Equals("logic"));
+		)
+	then
+		Question.Ask("offer_blokus");
+end
+
+rule "ask game type"
+	when 
+		a: Attribute(Name("age"), GreaterThan(7));
+	then
+		Question.Ask("type");
+end
+
+rule "ask economic"
+	when
+		a: Attribute(Name("type"), Equals("strategic"));
+	then	
+		Question.Ask("economic");
+end
+
+rule "ask game preparation time"
+	when
+		a: Attribute(Name("type"), Equals("strategic"));
+	then
+		Question.Ask("preparation");
+end
+
+rule "monopoly"
+	when
+		a: Attribute(Name("economic"), Equals(true));
+	then
+		Question.Ask("offer_monopoly");
+end
+
+rule "osadnicy_z_catanu"
+	when
+		b: Attribute(Name("people"), LessThan(5));
+		c: Attribute(Name("people"), GreaterThan(2));
+		d: Attribute(Name("age"), GreaterThan(11));
+		e: Attribute(Name("economic"), Equals(true));
+	then
+		Question.Ask("offer_osadnicy_z_catanu");
+end
+
+rule "puerto rico"
+	when
+		a: Attribute(Name("economic"), Equals(true));
+		b: Attribute(Name("preparation"), GreaterThan(10));
+		c: Attribute(Name("people"), LessThan(6));
+		d: Attribute(Name("people"), GreaterThan(2));
+		e: Attribute(Name("age"), GreaterThan(11));
+	then
+		Question.Ask("offer_puerto_rico");
+end
+
+rule "rokoko"
+	when
+		a: Attribute(Name("economic"), Equals(true));
+		b: Attribute(Name("preparation"), GreaterThan(10));
+		c: Attribute(Name("people"), LessThan(6));
+		e: Attribute(Name("age"), GreaterThan(11));
+	then
+		Question.Ask("offer_rokoko");
+end
+
+rule "ryzyko"
+	when
+		a: Attribute(Name("economic"), Equals(false));
+	then
+		Question.Ask("offer_ryzyko");
+end
+
+rule "kolejka"
+	when
+		a: Attribute(Name("economic"), Equals(false));
+		c: Attribute(Name("people"), LessThan(6));
+		e: Attribute(Name("age"), GreaterThan(11));
+	then
+		Question.Ask("offer_kolejka");
+end
+
+rule "carcassone"
+	when
+		a: Attribute(Name("economic"), Equals(false));
+		b: Attribute(Name("preparation"), GreaterThan(10));
+		c: Attribute(Name("people"), LessThan(6));
+		e: Attribute(Name("age"), GreaterThan(7));
+	then
+		Question.Ask("offer_caecassone");
+end
+
+rule "gra o tron"
+	when
+		a: Attribute(Name("economic"), Equals(false));
+		b: Attribute(Name("preparation"), GreaterThan(10));
+		d: Attribute(Name("people"), GreaterThan(2));
+		e: Attribute(Name("age"), GreaterThan(11));
+	then
+		Question.Ask("offer_gra_o_tron");
+
+end
+rule "ask action game"
 	when
 		a: Attribute(Name("people"), GreaterThan(6));
+		or
+		b: Attribute(Name("age"), LessThan(8));
+	then
+		Question.Ask("type_action");
+end
+
+rule "ask action game kind"
+	when
+		a: Attribute(Name("action"), Equals(true));
+		or
+		b: Attribute(Name("type"), Equals("action"));
+	then
+		Question.Ask("action_kind");
+end
+
+rule "genius"
+	when
+		a: Attribute(Name("people"), Equals(1));
+	then
+		Question.Ask("offer_genius");
+end
+
+rule "dobble"
+	when 
+		a: Attribute(Name("action_kind"), Equals("perception"));
+		or
+		a: Attribute(Name("action_kind"), Equals("irrelevant"));
+	then
+		Question.Ask("offer_dobble");
+end
+
+rule "jungle speed"
+	when 
+		a: Attribute(Name("action_kind"), Equals("speed"));
+		or
+		a: Attribute(Name("action_kind"), Equals("irrelevant"));
+	then
+		Question.Ask("offer_junglespeed");
+end
+
+rule "jenga"
+	when
+		a: Attribute(Name("action_kind"), Equals("precision"));
+		or
+		a: Attribute(Name("action_kind"), Equals("irrelevant"));
+	then
+		Question.Ask("offer_jenga");
+end
+
+rule "ask unreal"
+	when
+		a: Attribute(Name("type"), Equals("parody"));
+	then
+		Question.Ask("unreal");	
+end
+
+rule "jumanji"
+	when
+		a: Attribute(Name("unreal"), Equals(true));
+	then
+		Question.Ask("offer_jumanji");
+end
+
+rule "dixit"
+	when
+		a: Attribute(Name("unreal"), Equals(false));
+		or
+		(
+			b: Attribute(Name("people"), GreaterThan(6));
+			and
+			c: Attribute(Name("action"), Equals(false));
+		)
 	then
 		Question.Ask("offer_dixit");
 end
@@ -35,5 +266,14 @@ rule "game found"
 		a: Attribute(Name("game"), Equals(true));
 	then
 		System.out.println("Finished!");
+		drools.halt();
+end
+
+rule "game not found"
+	salience -1
+	when 
+		a: Attribute(Name("game"), Equals(false));
+	then
+		System.out.println("Unfortunately, there weren't any games that would fit your criteria.");
 		drools.halt();
 end

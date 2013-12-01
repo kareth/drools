@@ -84,7 +84,7 @@ public class Question {
 	
 	private void AddAttributes(ArrayList<String> labels) {
 		for (String label : labels) {
-			if (label.equals("forget")) continue;
+			if (label.equals("irrelevant")) continue;
 			Attribute attribute = Attribute.Parse(fact_name_, label);
 			AnswerProcessor.Insert(attribute);
 		}
@@ -92,7 +92,7 @@ public class Question {
 	
 	private void AddAttributes(ArrayList<String> labels, int[] selected) {
 		for (int index : selected)
-			if (labels.get(index).equals("forget")) {
+			if (labels.get(index).equals("irrelevant")) {
 				AddAttributes(labels);
 				return;
 			}

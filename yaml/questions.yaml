@@ -212,7 +212,6 @@ offer_jumanji:
     "no": "Nie, szukajmy dalej"
 
 offer_gra_o_tron:
-offer_gra_o_tron:
   type: "single"
   fact_name: "game"
   text: "Proponujemy grę Gra o Tron. Może być?"

@@ -133,6 +133,14 @@ hour_force:
     "yes": "Tak!"
     "no": "Nie!"
 
+offer_bitwa_morska:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Bitwa Morska. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
 offer_dixit:
   type: "single"
   fact_name: "game"
@@ -145,6 +153,14 @@ offer_genius:
   type: "single"
   fact_name: "game"
   text: "Proponujemy grę Geniusz. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
+offer_agricola:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Agricola. Może być?"
   answers:
     "yes": "Tak!"
     "no": "Nie, szukajmy dalej"
@@ -165,6 +181,22 @@ offer_angry_birds:
     "yes": "Tak!"
     "no": "Nie, szukajmy dalej"
 
+offer_pedzace_zolwie:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Pędzące Żółwie. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
+offer_pitchcar:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę PitchCar. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
 offer_jenga:
   type: "single"
   fact_name: "game"
@@ -177,6 +209,30 @@ offer_junglespeed:
   type: "single"
   fact_name: "game"
   text: "Proponujemy grę Jungle Speed. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
+offer_dungeon_twister:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Dungeon Twister. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
+offer_rummikub:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Rummikub. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
+offer_szachy:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Szachy. Może być?"
   answers:
     "yes": "Tak!"
     "no": "Nie, szukajmy dalej"
@@ -313,6 +369,14 @@ offer_gra_o_tron:
   type: "single"
   fact_name: "game"
   text: "Proponujemy grę Gra o Tron. Może być?"
+  answers:
+    "yes": "Tak!"
+    "no": "Nie, szukajmy dalej"
+
+offer_small_world:
+  type: "single"
+  fact_name: "game"
+  text: "Proponujemy grę Small World. Może być?"
   answers:
     "yes": "Tak!"
     "no": "Nie, szukajmy dalej"

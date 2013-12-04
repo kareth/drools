@@ -32,6 +32,27 @@ type:
     parody: "Mało poważna"
     irrelevant: "Bez znaczenia"
 
+type_6_people:
+  text: "Jaki rodzaj gry Cię interesuje?"
+  type: "multiple"
+  fact_name: "type"
+  answers:
+    strategic: "Strategiczna"
+    action: "Zręcznościowa"
+    parody: "Mało poważna"
+    irrelevant: "Bez znaczenia"
+
+type_5_people:
+  text: "Jaki rodzaj gry Cię interesuje?"
+  type: "multiple"
+  fact_name: "type"
+  answers:
+    strategic: "Strategiczna"
+    action: "Zręcznościowa"
+    parody: "Mało poważna"
+    random: "Losowa"
+    irrelevant: "Bez znaczenia"
+
 tradition:
   text: "Czy przy poszukiwaniu brać pod uwagę gry tradycyjne?"
   type: "single"
@@ -47,6 +68,15 @@ type_more_than_hour:
   answers:
     strategic: "Strategiczna"
     parody: "Mało poważna"
+    irrelevant: "Bez znaczenia"
+
+type_less_than_hour_5_people:
+  text: "Jaki rodzaj gry Cię interesuje?"
+  type: "multiple"
+  fact_name: "type"
+  answers:
+    random: "Losowa"
+    action: "Zręcznościowa"
     irrelevant: "Bez znaczenia"
 
 type_less_than_hour:

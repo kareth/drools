@@ -27,6 +27,7 @@ end
 
 rule "ask random"
 	when 
+		Attribute(Name("people"), LessThan(6));	
 		Attribute(Name("age"), LessThan(8));
 		Attribute(Name("action"), Equals(false));
 	then
@@ -166,8 +167,27 @@ rule "ask game type"
 	when 
 		Attribute(Name("hour"), Equals(true));
 		Attribute(Name("hour_force"), Equals(false));
+		Attribute(Name("people"), LessThan(5));
 	then
 		Question.Ask("type");
+end
+
+rule "ask game type 5 people"
+	when 
+		Attribute(Name("hour"), Equals(true));
+		Attribute(Name("hour_force"), Equals(false));
+		Attribute(Name("people"), Equals(5));
+	then
+		Question.Ask("type_5_people");
+end
+
+rule "ask game type 6 people"
+	when 
+		Attribute(Name("hour"), Equals(true));
+		Attribute(Name("hour_force"), Equals(false));
+		Attribute(Name("people"), Equals(6));
+	then
+		Question.Ask("type_6_people");
 end
 
 rule "ask game type more than hour"
@@ -177,11 +197,12 @@ rule "ask game type more than hour"
 		Question.Ask("type_more_than_hour");
 end
 
-rule "ask game type less than hour"
+rule "ask game type less than hour many people"
 	when
 		Attribute(Name("hour"), Equals(false));
+		Attribute(Name("people"), Equals(5));
 	then
-		Question.Ask("type_less_than_hour");
+		Question.Ask("type_less_than_hour_5_people");
 end
 
 rule "ask economic"
@@ -322,6 +343,12 @@ rule "ask action game"
 		Attribute(Name("people"), GreaterThan(6));
 		or
 		Attribute(Name("age"), LessThan(8));
+		or
+		(
+			Attribute(Name("hour"), Equals(false));
+			and
+			Attribute(Name("people"), GreaterThan(5));
+		)
 	then
 		Question.Ask("type_action");
 end
@@ -400,7 +427,7 @@ rule "pitchcar"
 	when
 		Attribute(Name("action_kind"), Equals("precision"));
 	then
-		Question.Ask("PitchCar");
+		Question.Ask("offer_pitchcar");
 end
 
 rule "angry birds"
@@ -412,6 +439,7 @@ end
 
 rule "ask unreal"
 	when
+		Attribute(Name("people"), LessThan(5));
 		Attribute(Name("type"), Equals("parody"));
 	then
 		Question.Ask("unreal");	
@@ -427,6 +455,12 @@ end
 rule "dixit"
 	when
 		Attribute(Name("unreal"), Equals(false));
+		or
+		(
+			Attribute(Name("people"), GreaterThan(4));
+			and
+			Attribute(Name("type"), Equals("parody"));
+		)
 		or
 		(
 			Attribute(Name("people"), GreaterThan(6));
@@ -470,6 +504,14 @@ rule "game not found"
 	salience -1
 	when 
 		Attribute(Name("game"), Equals(false));
+		or
+		(
+			Attribute(Name("people"), GreaterThan(4));
+			and
+			Attribute(Name("people"), LessThan(7));
+			and
+			Attribute(Name("action"), Equals(false));
+		)
 	then
 		System.out.println("Unfortunately, there weren't any games that would fit your criteria.");
 		drools.halt();

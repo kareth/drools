@@ -205,6 +205,15 @@ rule "ask game type less than hour many people"
 		Question.Ask("type_less_than_hour_5_people");
 end
 
+rule "ask game type less than hour"
+	when
+		Attribute(Name("hour"), Equals(false));
+		Attribute(Name("people"), LessThan(5));
+	then
+		Question.Ask("type_less_than_hour");
+end
+
+
 rule "ask economic"
 	when
 		Attribute(Name("type"), Equals("strategic"));
@@ -513,6 +522,7 @@ rule "game not found"
 			Attribute(Name("action"), Equals(false));
 		)
 	then
-		System.out.println("Unfortunately, there weren't any games that would fit your criteria.");
+		//System.out.println("Unfortunately, there weren't any games that would fit your criteria.");
+		Question.Notify("Brak gier spelniajacych Twoje wymagania.");
 		drools.halt();
 end

@@ -20,7 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 import org.yaml.snakeyaml.*;
 
-import com.sun.codemodel.internal.JLabel;
+
 
 public class Question {
 
@@ -130,7 +130,11 @@ public class Question {
 	    Question q = Question.Get(id);
 	    q.Ask();
 	  }
-
+	
+	public static void Notify(String message) {
+    	    JOptionPane.showMessageDialog(null, message, "Select multiple answers", JOptionPane.PLAIN_MESSAGE);
+	}
+	
 	private static HashMap<String, Question> questions = new HashMap<String, Question>();
 
 	  public static Question Get(String id) {

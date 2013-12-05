@@ -132,7 +132,7 @@ public class Question {
 	  }
 	
 	public static void Notify(String message) {
-    	    JOptionPane.showMessageDialog(null, message, "Select multiple answers", JOptionPane.PLAIN_MESSAGE);
+    	    JOptionPane.showMessageDialog(null, message, "Notification", JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	private static HashMap<String, Question> questions = new HashMap<String, Question>();
